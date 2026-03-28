@@ -84,6 +84,19 @@
     font-family: 'Quicksand', sans-serif;
 }
 
+.code-input input{
+     height: 35px;
+    width: 300px;
+    outline: none;
+    border: none;
+    background-color: rgb(213, 213, 213);
+    font-size: 17px;
+    font-family: 'Spline Sans', sans-serif;
+    font-family: 'Quicksand', sans-serif;
+    text-align: center;
+
+}
+
 /*FORM ERROR NOTATION*/
 .form-inputs .error-input{
     height: 35px;

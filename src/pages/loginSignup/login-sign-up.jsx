@@ -1,9 +1,10 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import './login-sign-up.css'
-import person_icon from '../assets/person.png'
-import email_icon from '../assets/email.png'
-import password_icon from '../assets/password.png'
+import person_icon from '../../assets/person.png'
+import email_icon from '../../assets/email.png'
+import password_icon from '../../assets/password.png'
+import { use } from "react";
 
 /*........................................................................................................*/
 
@@ -22,6 +23,8 @@ function LoginSignUp() {
     const [password, setPassword] = useState("");
     const [confirmPassword, setConfirmPassword] = useState("");
 
+    
+
 
     //REDIRECTING PAGE
     const navigate = useNavigate();
@@ -31,30 +34,12 @@ function LoginSignUp() {
 
 
 
-    {/* HANDLES AN STORES INPUT DATA */}
+    {/* LOGIN AND SIGN UP CONFIRMATION */}
     const[submition, setSubmition] = useState(false)
+    const[isAMember, setIsAMember] = useState(false)
 
 
-    const handleSubmit = (e) => {
-     e.preventDefault();
-
-        
-
-
-
-     {/* STORES SIGNUPDATA */}
-    const SignUpData = {
-      institute,
-      email,
-      department,
-      level,
-      password,
-      confirmPassword
-    };
     
-
-
-}
 
 
 
@@ -74,17 +59,19 @@ const[departmentErr, setDpartErr] = useState(true)
 const[idErr, setIdErr] = useState(true)
 const[confirmPasslErr, setConfirmPassErr] = useState(true)
 
+
 const handleFinishUp = () => {
     setLvlErr(true);
     setDpartErr(true);
     setConfirmPassErr(true);
     setIdErr(true)
+    const validLevels = ["100","200","300","400"]
 
    if(!level){
     setLvlErr(false);
    }
 
-   else if(Number(level) < 100 || Number(level) > 400 ){
+   else if(!validLevels.includes(level)){
     setLvlErr(false);
    }
 
@@ -110,7 +97,7 @@ const handleFinishUp = () => {
     
     alert("Submited, an email will be sent to you to confirm")
     setSubmition(true)
-    localStorage.setItem("newUser", JSON.stringify(SignUpData))
+    
     
   }
   
@@ -165,7 +152,7 @@ const loginData = {
         password
     };
 
-const handleLoginError = () => {
+const handleLoginAuth = () => {
     
 
 
@@ -184,19 +171,19 @@ const handleLoginError = () => {
         setpassErr(false);
         
     } else{
-         setSubmition(true)
+         setIsAMember(true)
     }
-
     
 
 }
 //SUCCESFUL LOGIN
 const authSuccesfull = () => {
-        if( submition === true) {
+        if( isAMember === true) {
             localStorage.setItem( "user", JSON.stringify(loginData));
-            console.log(JSON.parse(localStorage.getItem("user")))
+
             navigate("/main-app")
         }
+        console.log(JSON.parse(localStorage.getItem("user")))
     }
  //------------------------------------------------------------------
 
@@ -291,7 +278,7 @@ const authSuccesfull = () => {
                                 { mode === "Login"? <button 
                                 className="sign-up-btn"
                                 type="submit"
-                                onClick={handleLoginError}
+                                onClick={handleLoginAuth}
                                 >Login</button>
 
                                 :// ELSE
@@ -337,7 +324,7 @@ const authSuccesfull = () => {
                                     <input className={ passwordErr === false  ? "error-input" :""}type={passwordErr ==="err" ? "text" : "password"} 
                                     placeholder={passwordErr === false ? "text" : "password"}
                                     value={password}
-                                    onChange={(e) => setPassword(e.target.value)}
+                                    onChange={(e) => setPassword(target.value)}
                                      />
                                 </div>
 
@@ -360,7 +347,7 @@ const authSuccesfull = () => {
                                 className="sign-up-btn"
                                 type="submit"
                                 onClick={() =>{
-                                    handleLoginError();
+                                    handleLoginAuth();
                                     authSuccesfull();
                                 }
                                     
@@ -499,7 +486,7 @@ const authSuccesfull = () => {
                                  <div
                                   className="pass-retrieve"
                                   onClick={() => {
-                                    alert("possible")
+                                    navigate('/forgot-password')
                                   }}
                                   >forgot  password?</div>}
                                 
@@ -524,7 +511,7 @@ const authSuccesfull = () => {
                                 className="sign-up-btn"
                                 type="submit"
                                 onClick={ () => {
-                                    handleLoginError()
+                                    handleLoginAuth()
                                     authSuccesfull();
                                 } }
                                 >Login</button>

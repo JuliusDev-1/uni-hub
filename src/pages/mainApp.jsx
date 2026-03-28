@@ -1,5 +1,7 @@
 import { useNavigate } from "react-router-dom";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
+import PageNavBar from "./components/pagenavbar";
+import HomeFeed from "./feeds/homefeed";
 
 function MainApp() {
   const navigate = useNavigate();
@@ -15,10 +17,13 @@ function MainApp() {
 
   
 
+
+
   return (
-
-
-  <h1>Main app</h1>
+    <>
+    <HomeFeed/>
+    <PageNavBar/>
+    </>
 )
 }
 
