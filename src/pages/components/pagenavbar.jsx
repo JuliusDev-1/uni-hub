@@ -18,9 +18,6 @@ function PageNavBar() {
     const[marketPage, setMarketPage] = useState(false);
     const[chatPage, setChatPage] = useState(false);
     const[userProfilePage, setUserProfilePage] = useState(false);
-    const[status, setStatus] = useState(false);
-    const[search, setSearch] = useState(false);
-    const[notification, setNotification] = useState(false);
 
 
     return(

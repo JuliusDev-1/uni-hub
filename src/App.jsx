@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { HashRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import LoginSignup from './pages/loginSignup/login-sign-up'
 import MainApp from './pages/mainApp';
 import LandingPage from './pages/loginSignup/landingpage';
@@ -10,7 +10,7 @@ import ChangePassword from './pages/loginSignup/changepassword';
 function App() {
 
   return (
-     <HashRouter>
+     <BrowserRouter>
       <Routes>
         <Route path='/' element={<LandingPage />}/>
         <Route path='/login-signup' element={<LoginSignup />}/>
@@ -18,7 +18,7 @@ function App() {
         <Route path ='/forgot-password' element={<PasswordRetrieval />}/>
         <Route path ='/change-password' element={<ChangePassword />}/>
       </Routes>
-     </HashRouter>
+     </BrowserRouter>
   )
 }
 
